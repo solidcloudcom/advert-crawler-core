@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "mongoose": "^4.11.2",
     "monk": "^6.0.1",
     "node-cron": "^1.2.0",
     "node-exceptions": "^2.0.2",

@@ -1,8 +1,26 @@
 'use strict';
 
-const db = require('monk')('mongodb://ezekov:rich123945@ds155582.mlab.com:55582/scrap-n-nofity');
-const cars = db.get('cars');
+const getDbCredentials = require('core/credentials').getDbCredentials();
 
-exports.addCarToDb = (car) => {
-    cars.insert(car);
+const db = require('monk')(`mongodb://${getDbCredentials()}@ds155582.mlab.com:55582/scrap-n-nofity`);
+const demands = db.get('demands');
+
+const getDemands = () => {
+    demands.find(function (err, body) {
+        console.log(body)
+    });
 };
+
+function addNeed() {
+    demands.insert({
+        mark: '*',
+        model: '*',
+        year: JSON.stringify({from: 0, to: 2020}),
+        price: JSON.stringify({from: 0, to: 80000}),
+        userId: "someUuid003"
+    }).then(() => {
+        console.log('Gotovo');
+    })
+}
+
+console.log(getDemands())

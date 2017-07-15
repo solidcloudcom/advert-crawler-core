@@ -4,8 +4,9 @@ const scrapper = require('./scrappers/av');
 const cron = require('node-cron');
 
 
-// cron.schedule('*/20 * * * * *', () => {
-//     parser.parseAvBy();
-// });
+let i = 0;
 
-scrapper.parseAvBy();
+cron.schedule('*/1 * * * * *', () => {
+    console.log(i)
+    i++
+});

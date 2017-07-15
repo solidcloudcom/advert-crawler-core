@@ -8,8 +8,7 @@ const mapSelectors = require('./common').mapSelectorsToCarHtml;
 const errors = require('../core/errors');
 
 const parseCarHtml = (carHtml) => {
-    const carData = splitDescription( mapSelectors(config.itemSelectors, carHtml) );
-    console.log(carData)
+    return splitDescription( mapSelectors(config.itemSelectors, carHtml) );
 };
 
 const splitDescription = (carData) => {
@@ -37,9 +36,13 @@ exports.parseAvBy = () => {
             throw new errors.ScrapperFoundNoItems("Scrapper didn't find any items in av.by");
         }
 
+        let newCars = [];
+
         carsHtml.each(function () {
-            parseCarHtml($(this).html());
+            newCars.push(parseCarHtml($(this).html()));
         });
+
+        
     })
 
 };
