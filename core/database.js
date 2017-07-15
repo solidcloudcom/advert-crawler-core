@@ -1,17 +1,17 @@
 'use strict';
 
-const getDbCredentials = require('core/credentials').getDbCredentials();
+const getDbCredentials = require('./credentials').getDbCredentials;
 
 const db = require('monk')(`mongodb://${getDbCredentials()}@ds155582.mlab.com:55582/scrap-n-nofity`);
 const demands = db.get('demands');
 
 const getDemands = () => {
-    demands.find(function (err, body) {
-        console.log(body)
+    demands.find(function (err, data) {
+        console.log(data)
     });
 };
 
-function addNeed() {
+const addNeed = () => {
     demands.insert({
         mark: '*',
         model: '*',
@@ -21,6 +21,6 @@ function addNeed() {
     }).then(() => {
         console.log('Gotovo');
     })
-}
+};
 
-console.log(getDemands())
+getDemands();

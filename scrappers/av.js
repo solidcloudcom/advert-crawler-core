@@ -27,7 +27,7 @@ const splitDescription = (carData) => {
     };
 };
 
-exports.parseAvBy = () => {
+exports.getNewCars = () => {
 
     request(config.baseUrl, (err, body) => {
         const carsHtml = $(config.adSelector, body);
@@ -42,7 +42,7 @@ exports.parseAvBy = () => {
             newCars.push(parseCarHtml($(this).html()));
         });
 
-        
+
     })
 
 };
